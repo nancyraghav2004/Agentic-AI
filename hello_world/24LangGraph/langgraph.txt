@@ -1,0 +1,21 @@
+LanGraph - 
+(We noticed that sometimes coding an agent is not easy,
+for ex. - We have sequence of steps (multiple steps), it's like workflow
+like, take a user input (user_query) -> planning -> tool calling(Web Search) -> LLM call to final response -> Gemini API to ask if response is good (LLM as judge) -> if response not good, then retry -> End)
+(Now if you see this is AI workflow, so we will be using lot of while/for loop and backend etc., code will get complex, 
+so now to solve this problem, make things structurable and easy, langgraph comes into the pitch.
+So using langgraph, we can create workflows, multi agent workflows. LangGraph lets you organize your workflow, run this debug this etc.)
+
+
+(In LanGraph, we have 
+1. Nodes - nothing but functions,(ex. function to get user_query, function to call a tool, function to get the response)
+2. Edges - we connects nodes using edges.
+3. State - State is just a piece of data (
+    let's say my state has input which is type of str, and output which is str
+    So when you run the graph, we give state as an input, state first goes to the first Node as input,
+    And Every node returns a new/updated state.
+    (That means, we initially create state -> We put some data like user input or whatever you want to do ->
+    and then all the nodes perform their task (they can read the state, modify the state etc.) -> When execution is done, we get the final updated state back.
+    ))
+4. Conditional Edges - if else edges
+)

@@ -1,0 +1,31 @@
+Synchronous approach is what we created in lecture 21, but this is not how the production looks like.
+(That means we wrote first index.py then we run it manually it runs, this code takes some time to run, for 
+a single pdf, what if I have thousands of files, than it is going to take lot of time. And while this code 
+runs, it actually blocks my system. and same for chat.py)
+
+Sync means - it waits until the process is competed.
+(Solution of sync is async) So, 
+Async - Let's do this in background and let user do whatever he/she wants.
+
+So first let's discuss about - 
+Queue in System Design - 
+(In large systems when we talk about async programming, we use a data structure known as Queue.
+Queue works on principal - FIFO (First In First Out))
+
+
+So we are going to do is, we will be having python fast api server, now user give some query that hey can you please 
+resolve this query and give me ans, so there are 2 approach
+1. user ask query --> Server -(code), 
+so we can write code and let the user wait and block your whole server and return the response. (so when other users
+are coming to that server, but server is blocked and busy in resolving first user's query.)
+
+2. So rather than doing everything here (Server -(code)), we push the request into the queue, so that means we have got your request, please wait.
+user ask query --> Server --> Queue --> seperate processor
+so we will we having then seperate processor/consumer, this consumer going to pickup the task at a time and
+will process it sand store the result in some kind of database, and when user ask, give it to user.
+
+
+
+
+(We will take a lokk on python RQ (it uses redis in backend), so to make it work we need redis setup. (But redis open souce is revoked)
+So we will use valkey, which is drop in replacement for redis. )

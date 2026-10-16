@@ -1,0 +1,14 @@
+DeepSeek-R1
+Qwen 3
+Llama 3.3
+Qwen 2.5-VL
+Gemma 3 and other models, locally
+
+To use these models, you need good amount of hardware
+
+
+docker.com
+
+To run our models locally, we use ollama. There are 2 ways to run ollama,
+either full installation of ollama in machine - search ollama > download
+or use docker

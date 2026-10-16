@@ -1,0 +1,9 @@
+1. Login to huggingface
+
+2. you can explore model, dataset or spaces
+
+3. Select any model like gemma-3 or any other model, click on use this model > click transformers
+
+4. Use this link for setup-
+https://huggingface.co/docs/huggingface_hub/guides/cli
+

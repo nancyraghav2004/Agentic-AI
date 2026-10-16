@@ -1,0 +1,27 @@
+To run ollama' tinylama on your local machine run these commands:
+1. ollama --version - to know the version and if it is installed or not, if not then install  first
+
+2. ollama --help - to get help commands of ollama
+
+3. ollama serve - to start the machine 
+- http://localhost:11434/ run this one on browser to know if it is running or not
+
+4. Then to get base url and all (to use in vs code and all), in another terminal run ipconfig
+you will get IPv4 address, in browser run it like 
+- ipconfig:11434
+for example ;- 192.168.1.8:11434
+
+5. Now to install tinyllama or other model use-
+- ollama pull tinyllama
+
+6. run - ollama list
+-you will get to see you installed models
+
+7. to use open source model run -
+-ollama run tinylama
+-ollama run [model name]
+
+8. to stop use - /bye
+
+
+(To understand concept using docker - watch videos)

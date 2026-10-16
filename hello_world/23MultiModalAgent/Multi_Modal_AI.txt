@@ -1,0 +1,3 @@
+Multi Modal AI - 
+(When we say modAl, that means we are taking about special LLM models,
+that not only take input and text, but they can take video, audio, images etc as input.)

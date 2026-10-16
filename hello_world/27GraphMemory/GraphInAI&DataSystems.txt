@@ -1,0 +1,20 @@
+What is graph?
+-In simple terms (not related to memory), set of nodes, which are connected to each other using edges.
+-Nodes are the one that carry some data.
+-Graph represents flow/relationship
+
+There are 2 types of graph:
+1. Directed Graph - If you have direction (arrow like toward the node., A--->B (A is parent, B is child))
+2. Undirected Graph - If you have not given direction,( A---B, there is no direction given, so its like A and B are friends)
+
+Why do we need Graph?
+-(In prev lectures, we were storing our things in vector DB which is quite good, but vector embeddings can not store relations.
+ That's where graph shines.
+)
+
+To store the graphs there are special databases, for ex. - neo4j, kuzu db etc.
+
+In order to talk to the database, we can use Cypher Query.
+
+
+#Check you neo4j account now

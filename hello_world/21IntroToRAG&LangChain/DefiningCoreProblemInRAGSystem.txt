@@ -1,0 +1,97 @@
+Definition -
+RAG (Retreival Augmented Generation) is an AI framework that combines the strength of Large Language
+Model (LLMs) with external knowledge sources.
+
+Problem Statement - 
+You have lot of data in any format, let's take example :- we have lot of data in pdf format
+And it is very hard to read all data, to see what content avaiable in which file
+
+Idea - 
+Hey we have lot of users and employee, we do not want them to go through to each file because 
+it is lot time comsuming, so they can ask chatgpt or any LLM
+Hey can you tell me about case no 32
+So not chatgpt does not know what is case 32, so somehow we have tell that I have these files availabel
+From these files, search that relevant content for my query
+And then chatgpt will reply 
+
+So Problems here are -
+1. LLM does not have context about my data
+   It is trained on data that only avaiable on internet publicly
+2. Suppose I have 1000 files, so I can not give all those file to LLM as context, 
+   as a system prompt to LLM, because there is a context window, you can only give a limited context window
+
+So these are the typical problems that we solve using RAG
+
+Solution -
+Let's say I have bunch of files, how can I do a RAG
+(1 is very pre mature RAG, we can do but not a good idea, If have 1-2 file, then it is good)
+1. I can convert all these files into text, then I will prepare system prompt 
+   (You are ai assistant which can help the user, talk to their data-Available data - {Text})
+   Now user asks - can you tell me about xyz
+   Now system prompt has all data, so AI will respond
+   User will again ask query 2, and ai will respond back
+Problems with this approach -
+1. Cost (Lot of tokens to LLM) (API call is very large)
+2. Context Window Limited (ex. gpt has 1M Token window (it is big but suppose you have 50,000 files))
+
+2. 
+RAG says you have 2 phases in which can do a RAG
+i. Indexing phase --> User will provide the data
+ii. Retreival phase --> Chatting with the data
+
+(These 2 are compeletely different phases, having different code)
+Indexing Phase-
+What happens in Indexing phase - we expect that user will give us lot of document
+so user will say, hey i have lot of doc please starts indexing them.
+
+Lot of data --> Split data into different parts (chunking) --> (all chunks to) Embedding Model --> Vector Embeddings --> Vector Databse
+-(We can do chunking on page level, that each page is a chunk, or on paragraph level, or 250-250 character, chunking means splitting data into smaller pieces)
+-(Now for every chunk, we want to see what kind of data it holds, for this we use vector embedding.
+See, after chuking suppose i have lot of chunks, so I will give every chunks to Embedding Model (Chatgpt),
+and I will create some vector embeddings for every chunk out there.)
+-(There are lot of databases that can store vector embeddings, for ex. like pinecone, weaviate db, chroma db etc.
+What we going to save in Vector DB -
+i. Vectors (like chunk A and its vector, chunk B and its vector and so on and Metadata (from which page this paragraph belongs to etc.)))
+
+
+Retreival Phase-
+What happens in Retreival phase - It starts when user start chatting. The user basically gives a query.
+User --> Query --> (Can I convert this user query into vector embeddings (yes i can)) (Vector Embedding) Embedding Model --> Vector Embedding (of query)(Now I got vector embeddings of what user wants to ask) --> Got relevant chunks
+(now the query is vector similarity search, vector similarity search going to say that like hey user asked this, can you please search for these vectors and give me relevant chunks
+(Now let's say I got 2 relevant chunks, now what does these 2 chunks contains-
+chunks are let's say {page_num, doc}A and C{page_num, doc}
+Now we will use chat model, ex gpt 5, we will give A & c chunks as data now unlike First one, where we gave all the data, we will pass only relevant data-
+(You are ai assistant which can help the user, talk to their data-Available data - {Text}) Text here is these 2 chunks - {page_num, doc}A and C{page_num, doc}
+And what user asked we originally passed to the model (gpt 5) 
+and now it will reply back to the user))
+
+
+
+LANGCHAIN - 
+langchain is a library that provides lots of utility tools that you are going to use in your day to day AI tasks.
+So when you do Agentic AI or you do any kind of Ai task, there are lots and lots of utility things that we need
+for example - connecting to a vector database, reading a document, making some AI calls etc.
+Now these frequently used tasks are basically something that every developer writing from scratch,
+so what langchain has basically done is - LangChain provides you a lot of utility tools out of the box, 
+s ojust by using langchain you actually get lot of things.
+ex. - Suppose if i go to my pipeline, I need to read documents from the file, langchain says I will give you a functionality for that
+then I need to write a code for converting these doc into pieces of chunks, then langchain says I have already written a function you can use that.
+Then these chunks need to send to openAi and all to create vector embeddings for that, and langchain says I have already written function, use that.
+Then we need to connect it to DB, again langchain says I have written a function for that, why don't you use that, and so on.
+
+(An embedding is a way of converting text into numbers so that a 
+computer can compare the meaning of different pieces of text.)
+
+
+STEPS THAT I PERFORMED DURING INDEX.PY-
+1. do setup of pypdf (langchain document loader - https://docs.langchain.com/oss/python/integrations/document_loaders)
+2. Then do setup of Text splitter (langchain text splitter - https://docs.langchain.com/oss/python/integrations/splitters)
+3. Then do setup of Vector Embeddings (langchain openai embedding - https://docs.langchain.com/oss/python/integrations/embeddings/openai,
+ and langchain ollama embedding -https://docs.langchain.com/oss/python/integrations/embeddings/ollama)
+4. Then for (langchain qdrant db - https://docs.langchain.com/oss/python/integrations/vectorstores/qdrant)
+
+Qdrant API Key-
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIiwic3ViamVjdCI6ImFwaS1rZXk6OGI1Y2ZkMzYtZTYzOS00ZWJiLTk5NGUtYzQxMjQ0ZmI2YzEyIn0.sWH8JaxFPohV64fewDEsEVGMpU503lh7DhWYwqD0750
+
+Qdrant Cluster Endpoint-
+https://eb49e01a-e3d8-4a20-8e6e-2da52b4bcabf.us-west-2-0.aws.cloud.qdrant.io

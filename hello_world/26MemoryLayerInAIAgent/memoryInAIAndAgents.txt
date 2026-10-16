@@ -1,0 +1,25 @@
+What is memory in AI Agent?
+ 
+Problem-
+(So see, LLMs have fixed amount of context window, so whenever we make an ai call to these model, these models work on a stateless model,
+you have to send whole conversation history as a payload, that means if there is a message from user, 
+you have to maintain an array of msgs and you have to send each msg everytime, for example - [u-Hi c-Hello, u-My name is Nancy c-Hi Nancy xyz..]
+Now here is a problem, as the conversation increases, your token increase,
+now let's say there is max context window that llm can process, now if I ask question that what is my name, (out of context window), then context window slides down and that will be the new context window. Now it will see in new context window about my name and it will give me Nancy.
+Now after very very long conversation, when the context window is out of my prev context, and if I ask ok now tell me my name, at this time, in the contect there is no mention about my name and i will not get my name back, as llm do not know because conversation of that context window does not contain my name)
+
+
+Solution-
+(That is where memory comes into the pager, we can extract the information/facts(like name is Nancy, working in hcltech etc.)
+to a central store, like memory)
+
+Types of Memory-
+1. Short term memory (STM) -> (check mem0.ai website)
+-While you are in the session
+-While the task is getting performed (removed once the task is completed)
+2. Long term memory (LTM)
+-stays forever (age, name etc.)
+(In long term memory we have multiple memory)
+i. Factual Memory  - facts about user (this is something always there is context)
+ii. Episodic Memory - memory about past interaction (how this user talks, what likes etc.) (like suppose in 2023 we had trip of paris, and in 2026 you ask do you remmber our paris trip, the nit will retrieve that 2023 conversation that ok this one is related which i can use now)
+iii. Semantic Memory - facts about real world (general things/knowledge)

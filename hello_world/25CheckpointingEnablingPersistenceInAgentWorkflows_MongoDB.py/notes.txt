@@ -1,0 +1,12 @@
+So till video we have done a lot, but in prev lectures there is again a problem with that approach (state etc).
+(Now with state, the state was not persisting, so like when run a graph, you provide a state
+in chat.py, what was our initial state - updated_state = graph.invoke(State({"messages: ["Hi My name is Nancy"]}))
+and nodes runs, so state is maintined in a memory, like see every node has a access to the updated state, but what happens when graph invocation is done, then state is deleted, all vanished
+so to solve this problem, we need some kind of mechanism to store our states, so even after few days I come back and ask, hey what is my name, so it should be able me to answer Nancy.
+So that is where the checkpointing comes into the action.)
+
+CheckPoints - 
+{The state of a thread at a particular point in time is called checkpoints.
+CheckPoint is a snapshot of the graph state saved at each super-step and is represented by 'StateSnapshot'.}
+
+So to store this we need some database, for that we will be using the mongodb.

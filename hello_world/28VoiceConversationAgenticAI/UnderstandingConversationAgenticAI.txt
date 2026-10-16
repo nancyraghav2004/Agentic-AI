@@ -1,0 +1,3 @@
+To LLM, instead of text, we will be giving voice text.
+
+To build an voice agent, typically there is no model that take voice as an input (might be availabe in future)
